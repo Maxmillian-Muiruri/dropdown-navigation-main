@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remote Work Landing Page</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<header>
+    <nav class="navbar">
+<!--        <div class="nav-left">-->
+            <img src="images/logo.svg" alt="snap" class="logo">
+            <button class="mobile-menu-btn">
+                <img src="images/icon-menu.svg" alt="Open Menu" class="menu-icon">
+                <img src="images/icon-close-menu.svg" alt="Close Menu" class="close-icon">
+            </button>
+            <div class="nav-menu">
+                <ul class="nav-links">
+                    <li class="dropdown-container">
+                        <a href="#" class="dropdown-trigger">Features <img src="images/icon-arrow-down.svg" alt="arrow"></a>
+                        <div class="dropdown-content">
+                            <a href="#"><img src="images/icon-todo.svg" alt="todo"> Todo List</a>
+                            <a href="#"><img src="imdivages/icon-calendar.svg" alt="calendar"> Calendar</a>
+                            <a href="#"><img src="images/icon-reminders.svg" alt="reminders"> Reminders</a>
+                            <a href="#"><img src="images/icon-planning.svg" alt="planning"> Planning</a>
+                        </div>
+                    </li>
+                    <li class="dropdown-container">
+                        <a href="#" class="dropdown-trigger">Company <img src="images/icon-arrow-down.svg" alt="arrow"></a>
+                        <div class="dropdown-content">
+                            <a href="#">History</a>
+                            <a href="#">Our Team</a>
+                            <a href="#">Blog</a>
+                        </div>
+                    </li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+                <div class="nav-right mobile-nav">
+                    <a href="#" class="login">Login</a>
+                    <a href="#" class="register">Register</a>
+                </div>
+            </div>
+<!--        </div>-->
+<!--        <div class="nav-right desktop-nav">-->
+<!--            <a href="#" class="login">Login</a>-->
+<!--            <a href="#" class="register">Register</a>-->
+<!--        </div>-->
+    </nav>
+    <div class="overlay"></div>
+</header>
+
+<main class="hero">
+    <div class="hero-content">
+        <h1>Make remote work</h1>
+        <p>Get your team in sync, no matter your location. Streamline processes, create team rituals, and watch productivity soar.</p>
+        <button class="learn-more">Learn more</button>
+        <div class="client-logos">
+            <img src="images/client-databiz.svg" alt="databiz">
+            <img src="images/client-audiophile.svg" alt="audiophile">
+            <img src="images/client-meet.svg" alt="meet">
+            <img src="images/client-maker.svg" alt="maker">
+        </div>
+    </div>
+    <div class="hero-image">
+<!--        <img src="images/image-hero-desktop.png" alt="Hero image" class="desktop-image">-->
+        <img src="images/image-hero-mobile.png" alt="Hero image" class="mobile-image">
+    </div>
+</main>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const menuBtn = document.querySelector('.mobile-menu-btn');
+        const navMenu = document.querySelector('.nav-menu');
+        const overlay = document.querySelector('.overlay');
+
+        menuBtn.addEventListener('click', toggleMenu);
+        overlay.addEventListener('click', closeMenu);
+
+        function toggleMenu() {
+            document.body.classList.toggle('menu-open');
+            navMenu.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.body.classList.remove('menu-open');
+            navMenu.classList.remove('active');
+        }
+
+        const dropdownTriggers = document.querySelectorAll('.dropdown-trigger');
+
+        dropdownTriggers.forEach(trigger => {
+            trigger.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    const dropdownContent = this.nextElementSibling;
+                    const arrow = this.querySelector('img');
+
+                    dropdownContent.style.display =
+                        dropdownContent.style.display === 'none' ? 'block' : 'none';
+                    arrow.style.transform =
+                        dropdownContent.style.display === 'block' ? 'rotate(180deg)' : 'rotate(0)';
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
